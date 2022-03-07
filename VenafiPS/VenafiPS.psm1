@@ -19,7 +19,8 @@ foreach ( $folder in $folders) {
             if ( $folder -eq 'Public' ) {
                 Export-ModuleMember -Function $thisFile.Basename
             }
-        } Catch {
+        }
+        Catch {
             Write-Error ("Failed to import function {0}: {1}" -f $thisFile.fullname, $folder)
         }
     }
@@ -44,6 +45,7 @@ $aliases = @{
     'Invoke-TppRestMethod'     = 'Invoke-VenafiRestMethod'
     'Get-TppCertificate'       = 'Export-VenafiCertificate'
     'Get-TppCertificateDetail' = 'Get-VenafiCertificate'
+    'Import-TppCertificate'    = 'Import-VenafiCertificate'
 }
 $aliases.GetEnumerator() | ForEach-Object {
     Set-Alias -Name $_.Key -Value $_.Value
